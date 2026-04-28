@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -183,7 +169,9 @@
     inset: 0;
     z-index: 10002;
     pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
   }
 
   .gallery-chrome-visible {
@@ -260,15 +248,37 @@
     width: 100%;
   }
 
-  .gallery-nav-section { grid-column: 1 / span 3; }
-  .gallery-values-section { grid-column: 5 / span 2; }
-  .gallery-location-section { grid-column: 7 / span 2; }
-  .gallery-contact-section { grid-column: 9 / span 2; }
-  .gallery-social-section { grid-column: 11 / span 2; text-align: right; }
-  .gallery-social-section a { margin-left: auto; }
-  .gallery-coordinates { grid-column: 1 / span 3; font-family: var(--font-gallery-mono); }
-  .gallery-hint { grid-column: 5 / span 4; text-align: center; }
-  .gallery-info { grid-column: 9 / span 4; text-align: right; }
+  .gallery-nav-section {
+    grid-column: 1 / span 3;
+  }
+  .gallery-values-section {
+    grid-column: 5 / span 2;
+  }
+  .gallery-location-section {
+    grid-column: 7 / span 2;
+  }
+  .gallery-contact-section {
+    grid-column: 9 / span 2;
+  }
+  .gallery-social-section {
+    grid-column: 11 / span 2;
+    text-align: right;
+  }
+  .gallery-social-section a {
+    margin-left: auto;
+  }
+  .gallery-coordinates {
+    grid-column: 1 / span 3;
+    font-family: var(--font-gallery-mono);
+  }
+  .gallery-hint {
+    grid-column: 5 / span 4;
+    text-align: center;
+  }
+  .gallery-info {
+    grid-column: 9 / span 4;
+    text-align: right;
+  }
 
   .gallery-logo {
     position: relative;
@@ -290,10 +300,21 @@
     transition: transform 0.3s ease;
   }
 
-  .gallery-logo-circle-one { left: 0; transform: translate(0, -50%); }
-  .gallery-logo-circle-two { left: 0.8rem; transform: translate(0, -50%); mix-blend-mode: exclusion; }
-  .gallery-logo:hover .gallery-logo-circle-one { transform: translate(-0.5rem, -50%); }
-  .gallery-logo:hover .gallery-logo-circle-two { transform: translate(0.5rem, -50%); }
+  .gallery-logo-circle-one {
+    left: 0;
+    transform: translate(0, -50%);
+  }
+  .gallery-logo-circle-two {
+    left: 0.8rem;
+    transform: translate(0, -50%);
+    mix-blend-mode: exclusion;
+  }
+  .gallery-logo:hover .gallery-logo-circle-one {
+    transform: translate(-0.5rem, -50%);
+  }
+  .gallery-logo:hover .gallery-logo-circle-two {
+    transform: translate(0.5rem, -50%);
+  }
 
   .gallery-footer kbd {
     display: inline-flex;
@@ -338,7 +359,9 @@
     border-radius: 0;
     background: var(--gallery-surface);
     cursor: pointer;
-    transition: opacity 0.5s ease, filter 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      filter 0.5s ease;
   }
 
   .gallery-item[data-active-hidden="true"] {
@@ -373,7 +396,9 @@
   }
 
   .gallery-item img {
-    transition: transform 0.32s ease, filter 0.32s ease;
+    transition:
+      transform 0.32s ease,
+      filter 0.32s ease;
   }
 
   .gallery-item:hover img,
@@ -472,7 +497,9 @@
     inset: 0;
     z-index: 9998;
     pointer-events: none;
-    box-shadow: inset 0 0 180px var(--gallery-ink), inset 0 0 420px var(--gallery-ink);
+    box-shadow:
+      inset 0 0 180px var(--gallery-ink),
+      inset 0 0 420px var(--gallery-ink);
   }
 
   .gallery-pane {
@@ -484,11 +511,21 @@
 }
 
 @keyframes gallery-noise {
-  0% { transform: translate3d(0, 0, 0); }
-  25% { transform: translate3d(-2%, 1%, 0); }
-  50% { transform: translate3d(1%, -2%, 0); }
-  75% { transform: translate3d(-1%, -1%, 0); }
-  100% { transform: translate3d(2%, 1%, 0); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-2%, 1%, 0);
+  }
+  50% {
+    transform: translate3d(1%, -2%, 0);
+  }
+  75% {
+    transform: translate3d(-1%, -1%, 0);
+  }
+  100% {
+    transform: translate3d(2%, 1%, 0);
+  }
 }
 
 @media (max-width: 820px) {
@@ -504,13 +541,29 @@
     display: none;
   }
 
-  .gallery-nav-section { grid-column: 1 / span 2; }
-  .gallery-contact-section { grid-column: 4 / span 3; text-align: right; }
-  .gallery-contact-section a { margin-left: auto; }
-  .gallery-coordinates { grid-column: 1 / span 3; }
-  .gallery-hint { grid-column: 4 / span 3; text-align: right; }
-  .gallery-info { display: none; }
-  .gallery-expanded-item { max-width: 82vw; }
+  .gallery-nav-section {
+    grid-column: 1 / span 2;
+  }
+  .gallery-contact-section {
+    grid-column: 4 / span 3;
+    text-align: right;
+  }
+  .gallery-contact-section a {
+    margin-left: auto;
+  }
+  .gallery-coordinates {
+    grid-column: 1 / span 3;
+  }
+  .gallery-hint {
+    grid-column: 4 / span 3;
+    text-align: right;
+  }
+  .gallery-info {
+    display: none;
+  }
+  .gallery-expanded-item {
+    max-width: 82vw;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

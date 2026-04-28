@@ -30,13 +30,13 @@ const titles = [
 ];
 
 const images = [
-  "https://cdn.cosmos.so/0f164449-f65e-4584-9d62-a9b3e1f4a90a?format=jpeg",
-  "https://cdn.cosmos.so/74ccf6cc-7672-4deb-ba13-1727b7dc6146?format=jpeg",
-  "https://cdn.cosmos.so/2f49a117-05e7-4ae9-9e95-b9917f970adb?format=jpeg",
-  "https://cdn.cosmos.so/7b5340f5-b4dc-4c08-8495-c507fa81480b?format=jpeg",
-  "https://cdn.cosmos.so/f733585a-081e-48e7-a30e-e636446f2168?format=jpeg",
-  "https://cdn.cosmos.so/47caf8a0-f456-41c5-98ea-6d0476315731?format=jpeg",
-  "https://cdn.cosmos.so/f99f8445-6a19-4a9a-9de3-ac382acc1a3f?format=jpeg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777347965/tattoo_yv5qlm.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777347965/tattoooo_i7szsj.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777347965/tato_k98cee.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777347965/tattt_nzcfed.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777347965/tiro_tqak4n.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777348234/atafasf_w8yqo9.jpg",
+  "https://res.cloudinary.com/dflsuby2u/image/upload/v1777348235/ave_sm1vzr.jpg",
 ];
 
 type GalleryItem = {
@@ -93,7 +93,11 @@ function getItemSize(row: number, col: number, settings: GallerySettings) {
     : { width: settings.baseWidth, height: settings.largeHeight };
 }
 
-function getVisibleItems(currentX: number, currentY: number, settings: GallerySettings = defaultSettings): GalleryItem[] {
+function getVisibleItems(
+  currentX: number,
+  currentY: number,
+  settings: GallerySettings = defaultSettings,
+): GalleryItem[] {
   if (typeof window === "undefined") return [];
 
   const cellWidth = getCellWidth(settings);
@@ -136,7 +140,14 @@ export function ImmersivePortfolioGrid() {
   const settingsRef = useRef<GallerySettings>({ ...defaultSettings });
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
-  const drag = useRef({ active: false, moved: false, startX: 0, startY: 0, originX: 0, originY: 0 });
+  const drag = useRef({
+    active: false,
+    moved: false,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+  });
   const pressedItem = useRef<{ item: GalleryItem; element: HTMLButtonElement } | null>(null);
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [expanded, setExpanded] = useState<ExpandedItem | null>(null);
@@ -188,26 +199,44 @@ export function ImmersivePortfolioGrid() {
     const pane = new Pane({ title: "Gallery Settings", expanded: false });
     const paneControls = pane as unknown as {
       addFolder: (params: { title: string; expanded?: boolean }) => PaneFolder;
-      addButton: (params: { title: string }) => { on: (event: "click", callback: () => void) => void };
+      addButton: (params: { title: string }) => {
+        on: (event: "click", callback: () => void) => void;
+      };
     };
     paneRef.current = pane;
     pane.element.classList.add("gallery-pane");
     const settings = settingsRef.current;
-    const refresh = () => setItems(getVisibleItems(current.current.x, current.current.y, settingsRef.current));
+    const refresh = () =>
+      setItems(getVisibleItems(current.current.x, current.current.y, settingsRef.current));
 
     const sizeFolder = paneControls.addFolder({ title: "Item Sizes", expanded: false });
-    sizeFolder.addBinding(settings, "baseWidth", { min: 100, max: 600, step: 10 }).on("change", refresh);
-    sizeFolder.addBinding(settings, "smallHeight", { min: 100, max: 400, step: 10 }).on("change", refresh);
-    sizeFolder.addBinding(settings, "largeHeight", { min: 100, max: 600, step: 10 }).on("change", refresh);
+    sizeFolder
+      .addBinding(settings, "baseWidth", { min: 100, max: 600, step: 10 })
+      .on("change", refresh);
+    sizeFolder
+      .addBinding(settings, "smallHeight", { min: 100, max: 400, step: 10 })
+      .on("change", refresh);
+    sizeFolder
+      .addBinding(settings, "largeHeight", { min: 100, max: 600, step: 10 })
+      .on("change", refresh);
 
     const layoutFolder = paneControls.addFolder({ title: "Layout", expanded: false });
-    layoutFolder.addBinding(settings, "itemGap", { min: 0, max: 100, step: 5 }).on("change", refresh);
-    layoutFolder.addBinding(settings, "bufferZone", { min: 1, max: 5, step: 0.5 }).on("change", refresh);
+    layoutFolder
+      .addBinding(settings, "itemGap", { min: 0, max: 100, step: 5 })
+      .on("change", refresh);
+    layoutFolder
+      .addBinding(settings, "bufferZone", { min: 1, max: 5, step: 0.5 })
+      .on("change", refresh);
 
     const animationFolder = paneControls.addFolder({ title: "Animation", expanded: false });
-    animationFolder.addBinding(settings, "hoverScale", { min: 1, max: 1.5, step: 0.05 }).on("change", () => {
-      document.documentElement.style.setProperty("--gallery-hover-scale", String(settings.hoverScale));
-    });
+    animationFolder
+      .addBinding(settings, "hoverScale", { min: 1, max: 1.5, step: 0.05 })
+      .on("change", () => {
+        document.documentElement.style.setProperty(
+          "--gallery-hover-scale",
+          String(settings.hoverScale),
+        );
+      });
     animationFolder.addBinding(settings, "expandedScale", { min: 0.2, max: 0.8, step: 0.05 });
     animationFolder.addBinding(settings, "dragEase", { min: 0.01, max: 0.2, step: 0.01 });
     animationFolder.addBinding(settings, "zoomDuration", { min: 0.2, max: 1.5, step: 0.1 });
@@ -260,7 +289,14 @@ export function ImmersivePortfolioGrid() {
     gsap.fromTo(
       expandedRef.current,
       { width: expanded.width, height: expanded.height, x, y },
-      { width: targetWidth, height: targetHeight, x: 0, y: 0, duration: settings.zoomDuration, ease: "galleryHop" },
+      {
+        width: targetWidth,
+        height: targetHeight,
+        x: 0,
+        y: 0,
+        duration: settings.zoomDuration,
+        ease: "galleryHop",
+      },
     );
 
     gsap.fromTo(
@@ -330,10 +366,17 @@ export function ImmersivePortfolioGrid() {
 
   return (
     <main className="immersive-portfolio" aria-label="Infinite editorial portfolio gallery">
-      <div className={`gallery-chrome ${panelVisible ? "gallery-chrome-visible" : "gallery-chrome-hidden"}`}>
+      <div
+        className={`gallery-chrome ${panelVisible ? "gallery-chrome-visible" : "gallery-chrome-hidden"}`}
+      >
         <header className="gallery-header" aria-label="Studio information">
           <div className="gallery-nav-section">
-            <button className="gallery-logo" type="button" aria-label="Toggle panel" onClick={togglePanel}>
+            <button
+              className="gallery-logo"
+              type="button"
+              aria-label="Toggle panel"
+              onClick={togglePanel}
+            >
               <span className="gallery-logo-circle gallery-logo-circle-one" />
               <span className="gallery-logo-circle gallery-logo-circle-two" />
             </button>
@@ -366,7 +409,9 @@ export function ImmersivePortfolioGrid() {
         </header>
         <footer className="gallery-footer">
           <p className="gallery-coordinates">34.0522° N, 118.2437° W</p>
-          <p className="gallery-hint">Press <kbd>H</kbd> to toggle panel</p>
+          <p className="gallery-hint">
+            Press <kbd>H</kbd> to toggle panel
+          </p>
           <p className="gallery-info">Est. 2025 • Summer Days</p>
         </footer>
       </div>
@@ -393,11 +438,17 @@ export function ImmersivePortfolioGrid() {
               type="button"
             >
               <span className="gallery-item-image-wrap">
-                <img src={images[item.index % images.length]} alt={`${titles[item.index]} artwork`} draggable={false} />
+                <img
+                  src={images[item.index % images.length]}
+                  alt={`${titles[item.index]} artwork`}
+                  draggable={false}
+                />
               </span>
               <span className="gallery-item-caption">
                 <span className="gallery-item-name">{titles[item.index]}</span>
-                <span className="gallery-item-number">#{String(item.index + 1).padStart(5, "0")}</span>
+                <span className="gallery-item-number">
+                  #{String(item.index + 1).padStart(5, "0")}
+                </span>
               </span>
             </button>
           ))}
@@ -406,14 +457,26 @@ export function ImmersivePortfolioGrid() {
 
       <div ref={overlayRef} className="gallery-overlay" onClick={closeExpanded} />
       {expanded && (
-        <button ref={expandedRef} className="gallery-expanded-item" type="button" aria-label="Close expanded artwork" onClick={closeExpanded}>
-          <img src={images[expanded.index % images.length]} alt={`${titles[expanded.index]} expanded artwork`} draggable={false} />
+        <button
+          ref={expandedRef}
+          className="gallery-expanded-item"
+          type="button"
+          aria-label="Close expanded artwork"
+          onClick={closeExpanded}
+        >
+          <img
+            src={images[expanded.index % images.length]}
+            alt={`${titles[expanded.index]} expanded artwork`}
+            draggable={false}
+          />
         </button>
       )}
       <div className="gallery-project-title" aria-live="polite">
         <p ref={titleRef}>
           {activeWords.map((word) => (
-            <span className="gallery-title-word" key={`${activeTitle}-${word}`}>{word}</span>
+            <span className="gallery-title-word" key={`${activeTitle}-${word}`}>
+              {word}
+            </span>
           ))}
         </p>
       </div>
