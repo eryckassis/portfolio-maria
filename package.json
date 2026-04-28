@@ -66,6 +66,7 @@
     "tw-animate-css": "^1.3.4",
     "tweakpane": "^4.0.5",
     "vaul": "^1.1.2",
+    "vercel": "^52.0.0",
     "vite-tsconfig-paths": "^6.0.2",
     "zod": "^3.24.2"
   },
