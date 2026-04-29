@@ -1,6 +1,9 @@
+
 <div align="center">
 
-<!-- Adicione sua imagem aqui -->
+
+<img width="1415" height="722" alt="image" src="https://github.com/user-attachments/assets/a118ec9d-c558-4951-8d71-6cff7cfcc978" />
+
 
 ### Portfolio de Mari - Galeria Imersiva Interativa
 
@@ -21,10 +24,9 @@ Uma galeria de portfolio full-stack com animacoes GSAP, grade arrastavel infinit
 <table>
   <tr>
     <td width="100%" align="center">
-      <!-- Adicione imagem da tela de entrada (PageReveal) aqui -->
-      <br>
-      <sub><b>Page Reveal</b> - Animacao cinematica de entrada com wipe e tipografia animada</sub>
-    </td>
+    
+  <img width="1319" height="982" alt="Screenshot 2026-04-28 195410" src="https://github.com/user-attachments/assets/7b49b0b3-5e87-4dd0-af5f-c2bf24c81021" />
+
   </tr>
 </table>
 
@@ -33,12 +35,12 @@ Uma galeria de portfolio full-stack com animacoes GSAP, grade arrastavel infinit
 <table>
   <tr>
     <td width="50%" align="center">
-      <!-- Adicione imagem da grade em repouso aqui -->
+    <img width="1317" height="976" alt="Screenshot 2026-04-28 195422" src="https://github.com/user-attachments/assets/609ca69a-4e70-4312-a6c7-1512ed3957a6" />
       <br>
       <sub><b>Grade Imersiva</b> - Layout editorial infinito e arrastavel</sub>
     </td>
     <td width="50%" align="center">
-      <!-- Adicione imagem arrastando a grade aqui -->
+      <img width="1328" height="888" alt="Screenshot 2026-04-28 195451" src="https://github.com/user-attachments/assets/eca58f77-6ade-435e-b7a0-fc76a71f7e29" />
       <br>
       <sub><b>Interacao de Drag</b> - Navegacao por arrasto com momentum e inercia</sub>
     </td>
@@ -49,13 +51,11 @@ Uma galeria de portfolio full-stack com animacoes GSAP, grade arrastavel infinit
 
 <table>
   <tr>
-    <td width="50%" align="center">
-      <!-- Adicione imagem do card expandido aqui -->
+    <td width="50%" align="center">  <img width="1012" height="156" alt="image" src="https://github.com/user-attachments/assets/b30a4f3a-7e3f-4f66-8f5a-21c54c1a224a" />
       <br>
       <sub><b>Expand Animado</b> - Abertura fluida de projeto com GSAP clip-path</sub>
     </td>
-    <td width="50%" align="center">
-      <!-- Adicione imagem do detalhe do projeto aqui -->
+    <td width="50%" align="center"> <img width="1063" height="987" alt="image" src="https://github.com/user-attachments/assets/c9f5528c-bb7d-4c59-9da3-a30623e0c8c0" />
       <br>
       <sub><b>Detalhe do Projeto</b> - Visualizacao completa com titulo e informacoes</sub>
     </td>
@@ -66,8 +66,7 @@ Uma galeria de portfolio full-stack com animacoes GSAP, grade arrastavel infinit
 
 <table>
   <tr>
-    <td width="100%" align="center">
-      <!-- Adicione imagem mobile aqui -->
+    <td width="100%" align="center"> <img width="922" height="890" alt="image" src="https://github.com/user-attachments/assets/0bb6be14-9077-49b4-8a01-0773dd2ab4ca" />
       <br>
       <sub><b>Mobile</b> - Experiencia adaptada para dispositivos moveis</sub>
     </td>
